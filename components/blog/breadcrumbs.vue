@@ -24,7 +24,7 @@
         <li class="mx-1">/</li>
 
         <!-- Current Page -->
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" data-testid="current-crumb">
             <span itemprop="name">{{ headline }}</span>
             <meta itemprop="position" content="3" />
         </li>
