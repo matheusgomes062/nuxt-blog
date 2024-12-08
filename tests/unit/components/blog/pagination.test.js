@@ -88,7 +88,6 @@ describe('Pagination Component', () => {
             pageUrl: '/page/',
         });
         
-        console.log(wrapper.html());
         const activePage = wrapper.find('.pagination-item.active');
         expect(activePage.exists()).toBe(true);
         expect(activePage.text()).toBe('3');

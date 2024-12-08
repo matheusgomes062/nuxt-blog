@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row">
-        <template v-for="icon in icons" :key="icon.href">
+        <div v-for="icon in icons" :key="icon.href">
             <a
                 :href="icon.getHref()"
                 target="_blank"
@@ -9,7 +9,7 @@
             >
                 <component :is="icon.icon" :alt="icon.alt" :aria-label="icon.alt" class="w-6 h-6" width="24" height="24"/>
             </a>
-        </template>
+        </div>
     </div>
 </template>
 

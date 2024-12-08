@@ -1,9 +1,9 @@
 // @vitest-environment nuxt
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import Component from '@/components/blog/list.vue'; // Adjust the path to your component
+import List from '@/components/blog/list.vue'; // Adjust the path to your component
 
-describe('Component.vue', () => {
+describe('List.vue', () => {
     it('renders a list of articles when `data` is provided', () => {
         const mockData = [
         {
@@ -20,7 +20,7 @@ describe('Component.vue', () => {
         },
         ];
 
-        const wrapper = mount(Component, {
+        const wrapper = mount(List, {
             props: {
                 data: mockData,
             },
@@ -30,14 +30,12 @@ describe('Component.vue', () => {
                 },
                 stubs: {
                     NuxtLink: {
-                        template: '<a><slot /></a>',
-                    },
+                        props: ['to'],
+                        template: '<a :href="to"><slot /></a>'
+                    }
                 },
             },
         });
-
-        // Debug the rendered HTML if necessary
-        console.log(wrapper.html());
 
         const articles = wrapper.findAll('li');
         expect(articles).toHaveLength(mockData.length);
@@ -58,14 +56,11 @@ describe('Component.vue', () => {
     });
 
     it('renders the default message when `data` is empty', () => {
-        const wrapper = mount(Component, {
+        const wrapper = mount(List, {
         props: {
             data: [],
         },
         });
-
-        // Debug the rendered HTML if necessary
-        // console.log(wrapper.html());
 
         const message = wrapper.find('p');
         expect(message.exists()).toBe(true);
@@ -76,15 +71,12 @@ describe('Component.vue', () => {
 
     it('renders a custom message when `message` prop is provided and `data` is empty', () => {
         const customMessage = 'Custom message for no posts';
-        const wrapper = mount(Component, {
+        const wrapper = mount(List, {
         props: {
             data: [],
             message: customMessage,
         },
         });
-
-        // Debug the rendered HTML if necessary
-        // console.log(wrapper.html());
 
         const message = wrapper.find('p');
         expect(message.exists()).toBe(true);
@@ -101,7 +93,7 @@ describe('Component.vue', () => {
         },
         ];
 
-        const wrapper = mount(Component, {
+        const wrapper = mount(List, {
         props: {
             data: mockData,
         },
@@ -111,7 +103,7 @@ describe('Component.vue', () => {
         expect(message.exists()).toBe(false);
     });
 
-    it('renders NuxtLink components with correct `to` attributes', () => {
+    it('renders NuxtLink Lists with correct `to` attributes', () => {
         const mockData = [
         {
             _path: '/article-1',
@@ -121,7 +113,7 @@ describe('Component.vue', () => {
         },
         ];
 
-        const wrapper = mount(Component, {
+        const wrapper = mount(List, {
         props: {
             data: mockData,
         },
