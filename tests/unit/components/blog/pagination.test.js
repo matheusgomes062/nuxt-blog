@@ -6,7 +6,7 @@ import Pagination from '@/components/blog/pagination.vue'; // Adjust the path as
 describe('Pagination Component', () => {
     const createWrapper = (props) => {
         return mount(Pagination, {
-        props,
+            props,
             global: {
                 mocks: {
                     $nuxt: {

@@ -57,9 +57,9 @@ describe('List.vue', () => {
 
     it('renders the default message when `data` is empty', () => {
         const wrapper = mount(List, {
-        props: {
-            data: [],
-        },
+            props: {
+                data: [],
+            },
         });
 
         const message = wrapper.find('p');
@@ -72,10 +72,10 @@ describe('List.vue', () => {
     it('renders a custom message when `message` prop is provided and `data` is empty', () => {
         const customMessage = 'Custom message for no posts';
         const wrapper = mount(List, {
-        props: {
-            data: [],
-            message: customMessage,
-        },
+            props: {
+                data: [],
+                message: customMessage,
+            },
         });
 
         const message = wrapper.find('p');
@@ -94,9 +94,9 @@ describe('List.vue', () => {
         ];
 
         const wrapper = mount(List, {
-        props: {
-            data: mockData,
-        },
+            props: {
+                data: mockData,
+            },
         });
 
         const message = wrapper.find('p');
@@ -114,9 +114,9 @@ describe('List.vue', () => {
         ];
 
         const wrapper = mount(List, {
-        props: {
-            data: mockData,
-        },
+            props: {
+                data: mockData,
+            },
         });
 
         const link = wrapper.findComponent({ name: 'NuxtLink' });
