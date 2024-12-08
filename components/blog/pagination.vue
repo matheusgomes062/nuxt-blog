@@ -2,7 +2,7 @@
     <div class="pagination-list text-typography_primary">
         <!-- Chevron for Previous Page -->
         <nuxt-link
-            v-show="currentPage > 1"
+            v-if="currentPage > 1"
             class="pagination-item pagination-icon"
             :to="prevLink"
         >
@@ -11,20 +11,20 @@
 
         <!-- First Page -->
         <nuxt-link
-            :class="['pagination-item', currentPage === 1 ? 'active' : '']"
+            :class="['pagination-item', 'pagination-page', currentPage === 1 ? 'active' : '']"
             :to="baseUrl"
         >
             1
         </nuxt-link>
 
         <!-- Left Ellipsis -->
-        <span v-show="showLeftEllipsis" class="pagination-extra">...</span>
+        <span v-if="showLeftEllipsis" class="pagination-extra-left">...</span>
 
         <!-- Middle Pages -->
         <template v-for="page in pageRange" :key="page">
             <nuxt-link
-                v-show="page !== 1 && page !== totalPages"
-                :class="['pagination-item', currentPage === page ? 'active' : '']"
+                v-if="page !== 1 && page !== totalPages"
+                :class="['pagination-item', 'pagination-page', currentPage === page ? 'active' : '']"
                 :to="generatePageUrl(page)"
             >
                 {{ page }}
@@ -32,12 +32,12 @@
         </template>
 
         <!-- Right Ellipsis -->
-        <span v-show="showRightEllipsis" class="pagination-extra">...</span>
+        <span v-if="showRightEllipsis" class="pagination-extra-right">...</span>
 
         <!-- Last Page -->
         <nuxt-link
-            v-show="totalPages > 1"
-            :class="['pagination-item', currentPage === totalPages ? 'active' : '']"
+            v-if="totalPages > 1"
+            :class="['pagination-item', 'pagination-page', currentPage === totalPages ? 'active' : '']"
             :to="generatePageUrl(totalPages)"
         >
             {{ totalPages }}
@@ -45,7 +45,7 @@
 
         <!-- Chevron for Next Page -->
         <nuxt-link
-            v-show="currentPage < totalPages"
+            v-if="currentPage < totalPages"
             class="pagination-item pagination-icon"
             :to="generatePageUrl(currentPage + 1)"
         >
@@ -84,14 +84,24 @@ const prevLink = computed(() => {
 
 // Dynamic range for pages
 const pageRange = computed(() => {
+    if (props.totalPages <= 5) {
+        // Just show all pages in a small range
+        return Array.from({ length: props.totalPages - 2 }, (_, i) => i + 2);
+    }
+    // Otherwise use the existing logic
     const start = Math.max(2, props.currentPage - 1);
     const end = Math.min(props.totalPages - 1, props.currentPage + 1);
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 });
 
+const showRightEllipsis = computed(() => {
+    return props.totalPages > 5 && props.currentPage < props.totalPages - 2;
+});
+
 // Ellipsis visibility
-const showLeftEllipsis = computed(() => props.currentPage > 3);
-const showRightEllipsis = computed(() => props.currentPage < props.totalPages - 2);
+const showLeftEllipsis = computed(() => {
+    return props.currentPage > 3
+});
 </script>
 
 <style scoped>
