@@ -21,8 +21,9 @@
         <span v-if="showLeftEllipsis" class="pagination-extra-left">...</span>
 
         <!-- Middle Pages -->
-        <template v-for="page in pageRange" :key="page">
+        <template v-for="page in pageRange">
             <nuxt-link
+                :key="page"
                 v-if="page !== 1 && page !== totalPages"
                 :class="['pagination-item', 'pagination-page', currentPage === page ? 'active' : '']"
                 :to="generatePageUrl(page)"
