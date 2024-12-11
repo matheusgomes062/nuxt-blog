@@ -1,4 +1,3 @@
-// @vitest-environment nuxt
 import { mount } from '@vue/test-utils';
 import Section from '@/components/section.vue';
 import { describe, it, expect } from 'vitest';

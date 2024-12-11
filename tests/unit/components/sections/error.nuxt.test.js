@@ -1,4 +1,4 @@
-// @vitest-environment nuxt
+
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Error from '@/components/sections/error.vue'; // Adjust the path as necessary

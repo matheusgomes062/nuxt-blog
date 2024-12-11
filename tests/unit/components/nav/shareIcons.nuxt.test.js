@@ -1,4 +1,4 @@
-// @vitest-environment nuxt
+
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import ShareIcons from '@/components/nav/shareIcons.vue';

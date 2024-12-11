@@ -1,4 +1,4 @@
-// @vitest-environment nuxt
+
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import scrollTopIcon from '@/components/nav/scrollTopIcon.vue';

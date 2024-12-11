@@ -1,4 +1,3 @@
-// @vitest-environment jest
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import Breadcrumb from '@/components/blog/breadcrumbs.vue'

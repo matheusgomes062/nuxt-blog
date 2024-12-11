@@ -1,4 +1,4 @@
-// @vitest-environment nuxt
+
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import List from '@/components/blog/list.vue'; // Adjust the path to your component
